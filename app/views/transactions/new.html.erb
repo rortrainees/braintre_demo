@@ -1,0 +1,23 @@
+
+<script>
+braintree.setup("<%= @client_token %>", "custom", {id: "my_form"});
+</script>
+
+<h1> Braintree transaction </h1>
+<%= form_tag '/charge_client', role: 'form', id: 'my_form' do %>
+    <%= label_tag 'Cardholder name' %>
+    <%= text_field_tag 'Cardholder name', nil, name: nil, placeholder: 'Cardholder name', data: {'braintree-name' => 'cardholder_name'}, class: 'form-control' %><br>
+  
+    <%= label_tag 'Card number' %>
+    <%= text_field_tag 'Card number', nil, name: nil, placeholder: 'Card number', data: {'braintree-name' => 'number'}, class: 'form-control' %><br>
+   
+    <%= label_tag 'Cvv number' %>
+    <%= text_field_tag 'Cvv number', nil, name: nil, placeholder: 'CVV', data: {'braintree-name' => 'cvv'}, class: 'form-control' %><br>
+   
+    <%= label_tag 'Month' %>
+    <%= text_field_tag 'Month', nil, name: nil, placeholder: 'Month in MM format', data: {'braintree-name' => 'expiration_month'}, class: 'form-control' %></br>
+    <%= label_tag 'Year'%><br>
+   <%= text_field_tag 'Year', nil, name: nil, placeholder: 'Year in YY format', data: {'braintree-name' => 'expiration_year'}, class: 'form-control'%><br>
+  
+   <%= submit_tag 'Charge', class: 'btn btn-default'%>
+   <% end %>
